@@ -1,0 +1,102 @@
+/* 基础复位 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft YaHei", sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* 1. 外层：全屏背景色 */
+.navbar {
+    width: 100%;
+    background-color: #ffffff; /* 或者使用之前的福大红 */
+    height: 60px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 给导航栏加一点阴影 */
+    display: flex;
+    align-items: center;
+}
+
+/* 容器：分居两侧 */
+/* 容器：依然保持 space-between，但由于 flex 属性的改变，效果更稳 */
+.container {
+    max-width: 1200px;
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* 左侧组合：取消 flex: 1，改为默认宽度 */
+.left-side {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto; /* 核心：不放大、不缩小、根据内容定宽 */
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0 0 0 30px; /* 紧靠 Logo，只有 30px 间距 */
+    gap: 20px;
+    flex-shrink: 0; /* 绝对禁止菜单被挤压 */
+}
+
+/* 右侧包装层：关键所在 */
+.search-wrapper {
+    flex: 1; /* 它占据了左侧菜单和右侧边缘之间的所有空白 */
+    display: flex;
+    justify-content: flex-end; /* 将搜索框推到最右侧 */
+}
+
+/* 搜索栏样式：它在 wrapper 内部变化，不影响外部 */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f2f3f5;
+    border: 1px solid #e5e6eb;
+    border-radius: 4px;
+    padding: 4px 8px;
+    transition: width 0.3s; /* 丝滑伸缩 */
+    width: 180px; /* 初始宽度 */
+}
+
+/* 聚焦时：搜索框变长，但它只会往左边的空白区域伸展 */
+.search-bar:focus-within {
+    width: 260px;
+    background-color: #fff;
+    border-color: #1e80ff;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    flex: 1; /* 让 input 填满搜索栏内部 */
+    min-width: 0; /* 防止 input 撑破容器 */
+}
+
+/* 按钮样式保持不变 */
+
+.search-bar button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #86909c;
+    padding: 0 4px;
+}
+
+/* 菜单文字颜色 */
+.nav-links li a {
+    text-decoration: none;
+    color: #515767;
+    font-size: 14px;
+}
+
+.nav-links li a:hover {
+    color: #1e80ff;
+}
